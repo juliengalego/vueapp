@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>vue-app</title>
+  </head>
+  <body>
+    <div id="myApplication">
+      <table>
+        <tr>
+          <td>      
+            <h1>{{res}}</h1>
+              <recherche resultat="res" @clicked="onClickChild"></recherche>
+              <saison :debutsaison="2" :finsaison="10"></saison>
+            </td>
+          <td>
+            <indiceglycemique valeur="0.47"></indiceglycemique>
+          </td>
+        </tr>
+      </table>
+      <ApportsEnergetiques :aliment="aliment"></ApportsEnergetiques>
+    </div> 
+    <script src="/dist/build.js"></script>
+  </body>
+</html>
+
