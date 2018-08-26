@@ -12,8 +12,62 @@ export default {
          barre
      },
      props:['aliment'],
+
+    computed:{
+        indicateurs: function(){
+            var result = [
+                    {titre:"Energie kcal", valeur:this.aliment.kcal, valeurMax:this.ajr.kcal}, 
+                    {titre:"Lipides g", valeur:this.aliment.lipide, valeurMax:this.ajr.lipide},
+                    {titre:"Protéines g", valeur:this.aliment.proteine,valeurMax:this.ajr.proteine},
+                    {titre:"Glucides g", valeur:this.aliment.glucide,valeurMax:this.ajr.glucide},
+                    {titre:"Sucres g", valeur:this.aliment.sucre,valeurMax:this.ajr.sucre},
+                    {titre:"Fibres alimentaires g", valeur:this.aliment.fibre,valeurMax:this.ajr.fibre},
+                    {titre:"AG saturés g", valeur:this.aliment.ags,valeurMax:this.ajr.ags},
+                    {titre:"Calcium mg", valeur:this.aliment.calcium,valeurMax:this.ajr.calcium},
+                    {titre:"Chlorure mg", valeur:this.aliment.chlorureSodium,valeurMax:this.ajr.chlorure},
+                    {titre:"Cuivre mg", valeur:this.aliment.cuivre,valeurMax:this.ajr.cuivre},
+                    {titre:"Fer mg", valeur:this.aliment.fer,valeurMax:this.ajr.fer},
+                    {titre:"Iode µg", valeur:this.aliment.iode,valeurMax:this.ajr.iode},
+                    {titre:"Magnésium mg", valeur:this.aliment.magnesium,valeurMax:this.ajr.magnesium},
+                    {titre:"Manganese mg", valeur:this.aliment.manganese,valeurMax:this.ajr.manganese},
+                    {titre:"Phosphore mg", valeur:this.aliment.phosphore,valeurMax:this.ajr.phosphore},
+                    {titre:"Potassium mg", valeur:this.aliment.potassium,valeurMax:this.ajr.potassium},
+                    {titre:"Sélénium µg", valeur:this.aliment.selenium,valeurMax:this.ajr.selenium},
+                    {titre:"Sodium mg", valeur:this.aliment.sodium,valeurMax:this.ajr.sodium},
+                    {titre:"Zinc mg", valeur:this.aliment.zinc,valeurMax:this.ajr.zinc},
+                    {titre:"Vitamine A Rétinol µg", valeur:this.aliment.retinol,valeurMax:this.ajr.A},
+                    {titre:"Beta-Carotène µg", valeur:this.aliment.betaCarotene,valeurMax:this.ajr.betaCarotene},
+                    {titre:"Vitamine D", valeur:this.aliment.D,valeurMax:this.ajr.D3},                
+                    {titre:"Vitamine E", valeur:this.aliment.E,valeurMax:this.ajr.E},               
+                    {titre:"Vitamine K", valeur:this.aliment.K1,valeurMax:this.ajr.K},               
+                    {titre:"Vitamine C", valeur:this.aliment.C,valeurMax:this.ajr.C},               
+                    {titre:"Vitamine B1 mg", valeur:this.aliment.B1,valeurMax:this.ajr.B1},       
+                    {titre:"Vitamine B2 mg", valeur:this.aliment.B2,valeurMax:this.ajr.B2},       
+                    {titre:"Vitamine B3 mg", valeur:this.aliment.B3,valeurMax:this.ajr.B3},      {titre:"Vitamine B5 mg", valeur:this.aliment.B5,valeurMax:this.ajr.B5},       
+                    {titre:"Vitamine B6 mg", valeur:this.aliment.B6,valeurMax:this.ajr.B6},      {titre:"Vitamine B8 mg", valeur:this.aliment.B9,valeurMax:this.ajr.B8},
+                    {titre:"Vitamine B9 mg", valeur:this.aliment.B9,valeurMax:this.ajr.B9},
+                    {titre:"Vitamine B12 mg", valeur:this.aliment.B12,valeurMax:this.ajr.B12},
+
+                ];
+                    return result.sort(function(a, b){ 
+                        if (a.valeur == null && b.valeur != null) {
+                            return -1;
+                        } else if (a.valeur != null && b.valeur == null) {
+                            return 1;
+                        } else if (a.valeur == null && b.valeur == null) {
+                            return 0;
+                        }
+                        if(a.valeur == null || b.valeur == null)
+                            return -10000;
+                        var rapportA = (a.valeur/a.valeurMax);
+                        var rapportB =  (b.valeur/b.valeurMax);
+                        return rapportA - rapportB;
+                    }).reverse();
+        },
+    },
     data () {
         return {
+
             valeur: 1,
             ajr:{
                 kcal:2000,
@@ -30,27 +84,27 @@ export default {
                 B12:2.5,
                 B8 :50,
                 B5 :6,
-                Potassium:2000,
-                Chlorure:800,
-                Calcium:800,
-                Phosphore:700,
-                Magnesium:375,
-                Fer:14,
-                Zinc:10,
-                Cuivre:1,
-                Manganese:2,
-                Fluorure:3.5,
-                Selenium:55,
-                Chrome: 40,
-                Molybdène: 50,
-                Iode :150,
-                Sodium :2000,
-                Fibre :38,
-                Glucide:260,
-                Sucre:90,
-                Proteine:50,
-                Lipide:70,
-                AGsature:20,
+                potassium:2000,
+                chlorure:800,
+                calcium:800,
+                phosphore:700,
+                magnesium:375,
+                fer:14,
+                zinc:10,
+                cuivre:1,
+                manganese:2,
+                fluorure:3.5,
+                selenium:55,
+                chrome: 40,
+                molybdène: 50,
+                iode :150,
+                sodium :2000,
+                fibre :38,
+                glucide:260,
+                sucre:90,
+                proteine:50,
+                lipide:70,
+                ags:20,
                 betaCarotene:4800,
             },
         }
@@ -60,70 +114,14 @@ export default {
 
 <template>
   <div>
-      <div>Energie kcal
-        <barre :valeur=aliment.kcal  :valeurMax=ajr.kcal></barre></div>
-       <div>Protéines g
-        <barre :valeur=aliment.proteine  :valeurMax=ajr.Proteine></barre></div>
-       <div>Glucides g
-        <barre :valeur=aliment.glucide  :valeurMax=ajr.Glucide></barre></div>
-       <div>Lipides g </div> 
-        <barre :valeur=aliment.lipide  :valeurMax=ajr.Lipide></barre>
-       <div>Sucres g</div>
-        <barre :valeur=aliment.sucre  :valeurMax=ajr.Sucre></barre>
-       <div>Fibres alimentaires g</div>
-        <barre :valeur=aliment.fibre  :valeurMax=ajr.Fibre></barre>
-       <div>AG saturés g</div>
-        <barre :valeur=aliment.ags  :valeurMax=ajr.AGsature></barre>
-        <div>Calcium mg</div>
-        <barre :valeur=aliment.calcium  :valeurMax=ajr.Calcium></barre>
-        <div>Chlorure mg</div>
-        <barre :valeur=aliment.chlorureSodium  :valeurMax=ajr.Chlorure></barre>
-        <div>Cuivre mg</div>
-        <barre :valeur=aliment.cuivre  :valeurMax=ajr.Cuivre></barre>
-        <div>Fer mg</div>
-        <barre :valeur=aliment.fer  :valeurMax=ajr.Fer></barre>
-        <div>Iode µg</div>
-        <barre :valeur=aliment.iode  :valeurMax=ajr.Iode></barre>
-        <div>Magnésium mg</div>
-        <barre :valeur=aliment.magnesium  :valeurMax=ajr.Magnesium></barre>
-        <div>Manganèse mg</div>
-        <barre :valeur=aliment.manganese  :valeurMax=ajr.Manganese></barre>
-        <div>Phosphore mg</div>
-        <barre :valeur=aliment.phosphore  :valeurMax=ajr.Phosphore></barre>
-        <div>Potassium mg</div>
-        <barre :valeur=aliment.potassium  :valeurMax=ajr.Potassium></barre>
-        <div>Sélénium µg</div>
-        <barre :valeur=aliment.selenium  :valeurMax=ajr.Selenium></barre>
-        <div>Sodium mg</div>
-        <barre :valeur=aliment.sodium  :valeurMax=ajr.Sodium></barre>
-        <div>Zinc mg</div>
-        <barre :valeur=aliment.zinc  :valeurMax=ajr.Zinc></barre>
-        <div>Vitamine A Rétinol µg</div>
-        <barre :valeur=aliment.retinol  :valeurMax=ajr.A></barre>
-        <div>Beta-Carotène µg</div>
-        <barre :valeur=aliment.betaCarotene  :valeurMax=ajr.betaCarotene></barre>
-        <div>Vitamine D µg</div>
-        <barre :valeur=aliment.D  :valeurMax=ajr.D3></barre>
-        <div>Vitamine E mg</div>
-        <barre :valeur=aliment.E  :valeurMax=ajr.E></barre>
-        <div>Vitamine K µg</div>
-        <barre :valeur=aliment.K1  :valeurMax=ajr.K></barre>
-        <div>Vitamine C mg</div>
-        <barre :valeur=aliment.C  :valeurMax=ajr.C></barre>
-        <div>Vitamine B1 ou Thiamine mg</div>
-        <barre :valeur=aliment.B1  :valeurMax=ajr.B1></barre>
-        <div>Vitamine B2 ou Riboflavine mg</div>
-        <barre :valeur=aliment.B2  :valeurMax=ajr.B2></barre>
-        <div>Vitamine B3 ou PP ou Niacine mg</div>
-        <barre :valeur=aliment.B3  :valeurMax=ajr.B3></barre>
-        <div>Vitamine B5 ou Acide pantothénique mg</div>
-        <barre :valeur=aliment.B5  :valeurMax=ajr.B5></barre>
-        <div>Vitamine B6 mg</div>
-        <barre :valeur=aliment.B6  :valeurMax=ajr.B6></barre>
-        <div>Vitamine B9 ou Folates totaux µg</div>
-        <barre :valeur=aliment.B9  :valeurMax=ajr.B9></barre>
-        <div>Vitamine B12 µg</div>
-        <barre :valeur=aliment.B12  :valeurMax=ajr.B12></barre>
+      <div>
+    <li v-for="item in indicateurs">
+        <div v-if="item.valeur != null && item.valeur != 0">
+        {{ item.titre }}
+      <barre :valeur=item.valeur  :valeurMax=item.valeurMax></barre></div>
+    </li>
+   </div>
+
     </div>
 </template>
 
