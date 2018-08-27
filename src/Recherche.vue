@@ -1,5 +1,5 @@
 <script>
-import data from "./data/data.json";
+import data from "./data/list_products.json";
 
 export default {
   data(){
@@ -15,7 +15,9 @@ export default {
         {
             var self=this;
             if(this.query != '')
-                return this.aliments.filter(function(item){return item.nom_fr.toLowerCase().indexOf(self.query.toLowerCase())>=0;});
+                return this.aliments.filter(function(item){
+                    return item.nom_fr.toLowerCase().indexOf(self.query.toLowerCase())>=0;
+                    });
         }
     },
      methods: {

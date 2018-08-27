@@ -9,7 +9,7 @@ export default {
     data () {
         return {
              styleObject: {
-                backgroundColor: getColor(this.valeur),
+                backgroundColor: getColor(this.valeur/100),
             },
         }
     }
@@ -18,7 +18,7 @@ export default {
 
 <template>
   <div :style="styleObject" class="box box1">
-       <div class="evenboxinner">IG</div><span class="valeur">{{valeur*100}}</span>
+       <div class="evenboxinner">IG</div><span class="valeur">{{valeur}}</span>
     </div>
 </template>
 
