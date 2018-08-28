@@ -23,7 +23,8 @@ export default {
           v-model="query"
           :items="aliments"  
           item-text="nom_fr" 
-          persistent-hint
+          label="Recherche"
+          class="mx-3"          
           prepend-icon="search"
           v-on:change="selectItem(query)"
           chips

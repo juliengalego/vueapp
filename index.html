@@ -14,21 +14,22 @@
           <table>
             <tr>
               <td>      
-                <v-toolbar color="deep-orange darken-4"  app
+                <v-toolbar app
                 :clipped-left="$vuetify.breakpoint.mdAndUp"
                 fixed>
-                    <v-toolbar-title class="white--text">Ingrédient</v-toolbar-title>
+                    <v-toolbar-title class="black--text">Ingrédient</v-toolbar-title>
                     <v-spacer></v-spacer>
                   <recherche resultat="res" @clicked="onClickChild"></recherche>
-                <indiceglycemique :valeur="aliment.ig"></indiceglycemique>
+                  <v-spacer></v-spacer>
+                <indiceglycemique v-if="aliment.ig != null" :valeur="aliment.ig"></indiceglycemique>
                 </v-toolbar>
-                  <saison :debutsaison="2" :finsaison="10"></saison>
+                  <!-- <saison :debutsaison="2" :finsaison="10"></saison> -->
                 </td>
               <td>
               </td>
             </tr>
           </table>
-          <ApportsEnergetiques :aliment="aliment"></ApportsEnergetiques>
+          <ApportsEnergetiques v-show="res != ''" transition="scale-transition" origin="center center" :aliment="aliment"></ApportsEnergetiques>
         </div> 
               </v-container>
             </v-content>

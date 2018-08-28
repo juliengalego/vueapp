@@ -6,13 +6,11 @@ function getColor(value){
 }
 export default {
     props:['valeur'],
-    data () {
-        return {
-             styleObject: {
-                backgroundColor: getColor(this.valeur/100),
-            },
+    computed: {
+             styleObject: function(){
+                return {backgroundColor: getColor(this.valeur/100)}
+            }
         }
-    }
 }
 </script>
 
@@ -24,13 +22,7 @@ export default {
 
 
 <style script="text/css">
-@import url(https://fonts.googleapis.com/css?family=Bangers);
 
-h1{
-  background:#fff;
-  /* font-family: 'Bangers', cursive; */
-  font-size: 18px;
-}
 .box{
   width:50px;
   height:50px;
@@ -40,7 +32,7 @@ h1{
 }
 
 .valeur{
-    font-size:25px;
+    font-size:20px;
     margin: 10px;
 }
 

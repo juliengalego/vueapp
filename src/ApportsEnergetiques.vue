@@ -114,12 +114,27 @@ export default {
 
 <template>
   <div>
+      <v-toolbar>
+      <v-toolbar-title>Apports Energétiques (pour 100g)</v-toolbar-title>
+          </v-toolbar>
+         <v-list>
+            <template v-for="(item, index) in indicateurs">
+              <v-list-tile :key="index" ripple @click="">
+              <v-list-tile-content>
+              <v-list-tile-title>
+                  {{item.titre}}
+              </v-list-tile-title>
+                  <barre :valeur=item.valeur  :valeurMax=item.valeurMax></barre>
+              </v-list-tile-content>
+              </v-list-tile>
+            </template>
+         </v-list>
       <div>
-    <span v-for="item in indicateurs">
-        <div v-if="item.valeur != null && item.valeur != 0">
-        {{ item.titre }}
-      <barre :valeur=item.valeur  :valeurMax=item.valeurMax></barre></div>
-    </span>
+        <!-- <span v-for="item in indicateurs">
+            <div v-if="item.valeur != null && item.valeur != 0">
+            {{ item.titre }}
+        <barre :valeur=item.valeur  :valeurMax=item.valeurMax></barre></div>
+        </span> -->
    </div>
 
     </div>
