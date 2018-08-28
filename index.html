@@ -1,25 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+      <link href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons' rel="stylesheet">
+      <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
     <meta charset="utf-8">
-    <title>vue-app</title>
+    <title>Parce que c'est notre projet</title>
   </head>
   <body>
     <div id="myApplication">
-      <table>
-        <tr>
-          <td>      
-            <h1>{{res}}</h1>
-              <recherche resultat="res" @clicked="onClickChild"></recherche>
-              <saison :debutsaison="2" :finsaison="10"></saison>
-            </td>
-          <td>
-            <indiceglycemique :valeur="aliment.ig"></indiceglycemique>
-          </td>
-        </tr>
-      </table>
-      <ApportsEnergetiques :aliment="aliment"></ApportsEnergetiques>
-    </div> 
+        <v-app>
+            <v-content>
+              <v-container>
+          <table>
+            <tr>
+              <td>      
+                <v-toolbar color="deep-orange darken-4"  app
+                :clipped-left="$vuetify.breakpoint.mdAndUp"
+                fixed>
+                    <v-toolbar-title class="white--text">Ingrédient</v-toolbar-title>
+                    <v-spacer></v-spacer>
+                  <recherche resultat="res" @clicked="onClickChild"></recherche>
+                <indiceglycemique :valeur="aliment.ig"></indiceglycemique>
+                </v-toolbar>
+                  <saison :debutsaison="2" :finsaison="10"></saison>
+                </td>
+              <td>
+              </td>
+            </tr>
+          </table>
+          <ApportsEnergetiques :aliment="aliment"></ApportsEnergetiques>
+        </div> 
+              </v-container>
+            </v-content>
+          </v-app>
     <script src="/dist/build.js"></script>
   </body>
 </html>

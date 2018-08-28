@@ -6,30 +6,11 @@ export default {
       return {
           query: '',
           aliments : data,
-          isActive : false,
       }
   },
-  computed:
-    {
-        searchedItems:function()
-        {
-            var self=this;
-            if(this.query != '')
-                return this.aliments.filter(function(item){
-                    return item.nom_fr.toLowerCase().indexOf(self.query.toLowerCase())>=0;
-                    });
-        }
-    },
      methods: {
-        toggleSearch: function(){
-            this.isActive = !this.isActive;   
-            if(this.isActive)
-            {
-                this.$refs.search.focus();
-            }
-        },
         selectItem: function(result){
-            this.isActive = !this.isActive;   
+            history.pushState("Test", this.query, "/a/"+this.query)
             this.$emit('clicked', result)
         },
     }
@@ -38,17 +19,16 @@ export default {
 </script>
 
 <template>
-<div>
-    <button v-on:click="toggleSearch" >Search</button>
-   <div v-show="isActive" id="myOverlay" class="overlay"  v-on:click.self="toggleSearch">
-  <div class="overlay-content">
-      <input type="text" placeholder="Recherche..." v-model="query" name="search" ref="search" autofocus><br /><br /><br />
-       <div class="search-zone" v-bind:key="item.nom_fr" v-for="(item) in searchedItems">
-        <a v-on:click="selectItem(item.nom_fr)" >{{item.nom_fr}}</a>
-    </div>
-  </div>
-</div> 
-  </div>
+<v-autocomplete
+          v-model="query"
+          :items="aliments"  
+          item-text="nom_fr" 
+          persistent-hint
+          prepend-icon="search"
+          v-on:change="selectItem(query)"
+          chips
+        >
+</v-autocomplete>
 </template>
 
 <style scoped>

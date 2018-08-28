@@ -4,6 +4,10 @@ import indiceglycemique from './IndiceGlycemique.vue'
 import apportsenergetiques from './ApportsEnergetiques.vue'
 import recherche from './Recherche.vue'
 import data from "./data/data.json";
+import Vuetify from 'vuetify'
+import 'vuetify/dist/vuetify.min.css'
+
+Vue.use(Vuetify)
 
 new Vue({
   el: '#myApplication',

@@ -115,11 +115,11 @@ export default {
 <template>
   <div>
       <div>
-    <li v-for="item in indicateurs">
+    <span v-for="item in indicateurs">
         <div v-if="item.valeur != null && item.valeur != 0">
         {{ item.titre }}
       <barre :valeur=item.valeur  :valeurMax=item.valeurMax></barre></div>
-    </li>
+    </span>
    </div>
 
     </div>
